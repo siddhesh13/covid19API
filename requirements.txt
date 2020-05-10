@@ -7,3 +7,4 @@ peewee
 Werkzeug
 requests
 beautifulsoup4==4.1.3
+lxml

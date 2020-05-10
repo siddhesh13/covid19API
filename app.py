@@ -93,9 +93,9 @@ state = soup.find('table', class_ = 'table table-striped')
 
 
 response = requests.get("https://api.covid19india.org/state_district_wise.json")
-time.sleep(1)
+#time.sleep(1)
 state_data = response.json()
-time.sleep(1)
+#time.sleep(1)
 
 all_in_one={}
 all_in_one["India"] = india
