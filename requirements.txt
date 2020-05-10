@@ -6,4 +6,4 @@ Jinja2
 peewee
 Werkzeug
 requests
-beautifulsoup4
+beabeautifulsoup4==4.1.3
