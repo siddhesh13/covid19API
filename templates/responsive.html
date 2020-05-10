@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Person Tracker Live</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+    
+}
+
+body {
+  margin: 0;
+  font-family: "serif";
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    opacity:1;
+    font-weight: 500;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style the header */
+.header {
+    background-color: #416788;
+    padding: 1px;
+    
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+h2 {
+    margin: 0px 10px 0px 10px;
+    text-align: left;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 15px;
+    display:block;
+    height:250px;
+    background-color:#A3CEF1;
+    padding: 5px;
+    border-radius: 20px;
+    border: 4px solid white;
+    
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding:5px;
+    text-align: center;
+    background: #416788;
+    margin-top: 70px;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.blinking{
+    font-size:25px;
+    font-color: #691E9E;
+    position: relative;
+    
+  text-align: left;
+  text-transform: capitalize;
+  animation:blinkingText 2s infinite;
+}
+@keyframes blinkingText{
+  0%{   color: #691E9E; }
+  49%{  color: #691E9E; }
+  50%{  color: transparent; }
+  99%{  color:transparent;  }
+  100%{ color: #000;  }
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 5px;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+    .column {
+        width: 100%;
+    }
+    .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+<div id="main">
+<div class="header">
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/">About</a>
+  <a href="/info">Info</a>
+  <a href="/download">Statistics</a>
+  <a href="/contact">Contact</a>
+</div>
+<h1 style="font-size:35px;color:#E0E0E2; text-align: center;">Person Tracker</h1>
+ <span style="color:#E0E0E2;font-size:30px;cursor:pointer ;" onclick="openNav()">&#9776; </span>
+  
+ 
+</div>
+
+
+
+
+<div class="row">
+  <div class="column">
+    <h2 style="color:#2D5779">{{ area[0] }}</h2>
+    <ul style="list-style-type:None">
+  {%  for item in dome1 %}
+        <li class="blinking"> {{ item }}</li>
+    {%  endfor %}
+</ul>
+  </div>
+  <div class="column">
+    <h2 style="color:#2D5779">{{ area[1] }}</h2>
+    <ul style="list-style-type:None">
+  {%  for item in dome2 %}
+        <li class="blinking"> {{ item }}</li>
+    {%  endfor %}
+</ul>
+  </div>
+  <div class="column">
+    <h2 style="color:#2D5779">{{ area[2] }}</h2>
+     
+      <ul style="list-style-type:None">
+  {%  for item in dome3 %}
+        <li class="blinking"> {{ item }}</li>
+    {%  endfor %}
+</ul>
+      
+  </div>
+   <div class="column">
+    <h2 style="color:#2D5779">{{ area[3] }}</h2>
+    <ul style="list-style-type:None">
+  {%  for item in dome4 %}
+        <li class="blinking"> {{ item }}</li>
+    {%  endfor %}
+</ul>
+  </div>
+</div>
+<div class="footer">
+  <h3 style="color:#E0E0E2">Desinged by: Design Thinking Lab</h3>
+   <h3 style="color:#E0E2D1">Copyright ©  <a style="color:#F08700" href="https://curiositygym.com/
+">CuriosityGym</a>   All rights reserved</h3>
+</div>
+</div>
+<script>
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "200px";
+    document.getElementById("main").style.marginLeft = "200px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
+</script>
+</body>
+</html>
