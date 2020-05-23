@@ -1,20 +1,15 @@
+from flask import Flask, jsonify, render_template, Response, g, current_app as app, make_response
+import os
+import os.path
 from bs4 import BeautifulSoup
 import requests
 import time
 import json
-from pprint import pprint
-##with open('sample.html') as html_file:
-##    soup = BeautifulSoup(html_file, 'lxml')
-##
-##for article in soup.find_all('div', class_ ='article'):
-##    ##print(article)
-##
-##    headline = article.h2.a.text
-##    print(headline)
-##    summary = article.p.text
-##    print(summary)
+app = Flask(__name__)
 
 
+
+app = Flask(__name__)
 india = {
     'active': 0,
     'confirmed': 0,
@@ -81,9 +76,9 @@ for row in all_rows:
     stat = extract_contents(row.find_all('td'))
     if len(stat) == 5:
         stats.append(stat)
-india['confirmed'] = 0
+
 for item in stats:
-    india['confirmed'] += int(item[2]) 
+    india['confirmed'] += int(item[2])
     if item[1] == "Maharashtra":
         mah['confirmed'] = item[2]
         mah['active'] = int(item[2]) - int(item[3]) - int(item[4])
@@ -98,13 +93,13 @@ state = soup.find('table', class_ = 'table table-striped')
 
 
 response = requests.get("https://api.covid19india.org/state_district_wise.json")
-time.sleep(2)
+#time.sleep(1)
 state_data = response.json()
-time.sleep(2)
+#time.sleep(1)
 
 all_in_one={}
 all_in_one["India"] = india
-all_in_one["Maharashra"] = mah
+all_in_one["Maharashtra"] = mah
 district = ["Mumbai", "Pune", "Thane"]
 for d in district:
     if d in state_data["Maharashtra"]["districtData"]:
@@ -119,10 +114,38 @@ for d in district:
 ##    print(key)
 ##    print(values)
 
-pprint(all_in_one)
+
+@app.route('/india')
+def india():
+   return jsonify(all_in_one["India"])
+
+@app.route('/maharashtra')
+def maharashtra():
+   return jsonify(all_in_one["Maharashtra"])
+
+@app.route('/mumbai')
+def mumbai():
+   return jsonify(all_in_one["Mumbai"])
+
+@app.route('/pune')
+def pune():
+   return jsonify(all_in_one["Pune"])
+
+@app.route('/thane')
+def thane():
+   return jsonify(all_in_one["Thane"])
+
+@app.route('/data')
+def all():
+   return jsonify(all_in_one)
+
+@app.route('/')
+def ok():
+   return "API for numbers of covid19 cases in India, Maharashtra, Mumbai, Pune and Thane."
 
 
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
