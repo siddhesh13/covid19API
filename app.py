@@ -78,10 +78,10 @@ for row in all_rows:
         stats.append(stat)
 
 for item in stats:
-    india['confirmed'] += int(item[2])
+    india['confirmed'] += int(item[5])
     if item[1] == "Maharashtra":
-        mah['confirmed'] = item[2]
-        mah['active'] = int(item[2]) - int(item[3]) - int(item[4])
+        mah['confirmed'] = item[5]
+        mah['active'] = int(item[2])
         mah['recovered'] = item[3]
         mah['deceased'] = item[4]
     #print(item[0] + ". " + item[1] + " - " + item[2] + ", " + item[3] + ", " + item[4]) 
