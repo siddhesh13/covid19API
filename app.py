@@ -74,7 +74,7 @@ all_rows = soup.find_all('tr')
 
 for row in all_rows:
     stat = extract_contents(row.find_all('td'))
-    if len(stat) == 5:
+    if len(stat) == 6:
         stats.append(stat)
 
 for item in stats:
