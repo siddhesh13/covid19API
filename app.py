@@ -140,7 +140,7 @@ def all():
    return jsonify(all_in_one)
 
 @app.route('/state_data')
-def all():
+def all_states():
    return stats
 
 
