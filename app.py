@@ -58,6 +58,7 @@ mah_dist = {
             }
         }
     }
+state_data = {}
 source = requests.get('https://www.mohfw.gov.in/').text
 soup = BeautifulSoup(source,'lxml')
 active = soup.find('li', class_ = 'bg-blue')
@@ -77,6 +78,9 @@ for row in all_rows:
     if len(stat) == 6:
         stats.append(stat)
 
+for item in stats:
+    state_data[item[0]] = item
+    del state_data[item[0]][item[1]]
 for item in stats:
     india['confirmed'] += int(item[5])
     if item[1] == "Maharashtra":
