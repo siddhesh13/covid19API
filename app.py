@@ -96,7 +96,7 @@ response = requests.get("https://api.covid19india.org/state_district_wise.json")
 #time.sleep(1)
 state_data = response.json()
 #time.sleep(1)
-print(state_data)
+#print(state_data)
 all_in_one={}
 all_in_one["India"] = india
 all_in_one["Maharashtra"] = mah
