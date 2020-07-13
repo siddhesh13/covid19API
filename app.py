@@ -58,7 +58,7 @@ mah_dist = {
             }
         }
     }
-state_data = {}
+allstate_data = {}
 source = requests.get('https://www.mohfw.gov.in/').text
 soup = BeautifulSoup(source,'lxml')
 active = soup.find('li', class_ = 'bg-blue')
@@ -79,8 +79,13 @@ for row in all_rows:
         stats.append(stat)
 
 for item in stats:
-    state_data[item[0]] = item
-    del state_data[item[0]][item[1]]
+    allstate_data[item[1]] = {'active':'', 'recovered':'', 'deaths':'', 'confirmed':''} 
+    allstate_data[item[1]]['active']= item[2]
+    allstate_data[item[1]]['recovered'] = item[3]
+    allstate_data[item[1]]['deaths'] = item[4]
+    allstate_data[item[1]]['confirmed'] = item[5]
+    #del state_data[item[0]][item[1]]
+    
 for item in stats:
     india['confirmed'] += int(item[5])
     if item[1] == "Maharashtra":
@@ -145,7 +150,7 @@ def all():
 
 @app.route('/state_data')
 def all_states():
-   return jsonify(stats)
+   return jsonify(allstate_data)
 
 
 @app.route('/')
