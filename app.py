@@ -23,7 +23,7 @@ world = {
     'deaths': 0
     }
 
-state = {
+state_cases = {
     'confirmed': 0,
     'active': 0,
     'recovered': 0,
@@ -177,7 +177,7 @@ def state_data(state_name):
             state['confirmed'] = item[2]
             state['confirmed'] = item[3]
             state['confirmed'] = item[4]
-    return jsonify(state)
+    return jsonify(state_cases)
 
 @app.route('/countries/<country_code>/')
 def country(country_code):
