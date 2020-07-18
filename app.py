@@ -165,16 +165,15 @@ def all_states():
 def country_data(country_code):
     g.country_code = country_code
     #print(country_data)
-##    for item in country_data:
-##        print("OK")
-##        if item['country'].lower() == country.lower():
-##            world['confirmed'] = item['cases']
-##            world['active'] = item['active']
-##            world['recovered'] = item['recovered']
-##            world['deaths'] = item['deaths']
-##            break
+    for item in country_data:
+        if item['country'].lower() == g.country_code.lower():
+            world['confirmed'] = item['cases']
+            world['active'] = item['active']
+            world['recovered'] = item['recovered']
+            world['deaths'] = item['deaths']
+            break
         
-    return g.country_code#jsonify(world)    
+    return jsonify(world)    
 
 @app.route('/')
 def ok():
