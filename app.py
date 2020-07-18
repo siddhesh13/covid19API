@@ -172,7 +172,7 @@ def all_states():
 def state_data(state_name):
     g.state_name = state_name
     for item in stats:
-        if item[1].lower() == g.staate_name.lower():
+        if item[1].lower() == g.state_name.lower():
             state['confirmed'] = item[5]
             state['confirmed'] = item[2]
             state['confirmed'] = item[3]
