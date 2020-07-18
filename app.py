@@ -162,7 +162,7 @@ def all():
 def all_states():
    return jsonify(allstate_data)
 
-@app.route('/<country>')
+@app.route('countries/<country>')
 def country_data():
     g.country = country
     source = requests.get('https://coronavirus-19-api.herokuapp.com/countries')
