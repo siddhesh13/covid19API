@@ -131,7 +131,6 @@ for d in district:
 
 source = requests.get('https://coronavirus-19-api.herokuapp.com/countries')
 country_data = source.json()
-#print(country_data)
 
 
 @app.route('/india')
@@ -165,11 +164,7 @@ def all_states():
 @app.route('/countries/<country>')
 def country_data():
     g.country = country
-    source = requests.get('https://coronavirus-19-api.herokuapp.com/countries')
-    country_data = source.json()
     #print(country_data)
-    country = 'india'
-
     for item in country_data:
         if item['country'].lower() == g.country.lower():
             world['confirmed'] = item['cases']
