@@ -16,6 +16,12 @@ india = {
     'deceased': 0,
     'recovered': 0
     }
+world = {
+    'confirmed': 0,
+    'active': 0,
+    'recovered': 0,
+    'deaths': 0
+    }
 
 mah = {
     'active': 0,
@@ -123,6 +129,10 @@ for d in district:
 ##    print(key)
 ##    print(values)
 
+source = requests.get('https://coronavirus-19-api.herokuapp.com/countries')
+country_data = source.json()
+#print(country_data)
+
 
 @app.route('/india')
 def india():
@@ -152,6 +162,20 @@ def all():
 def all_states():
    return jsonify(allstate_data)
 
+@app.route('/<country>')
+def country_data():
+    g.country = country
+    source = requests.get('https://coronavirus-19-api.herokuapp.com/countries')
+    country_data = source.json()
+    #print(country_data)
+    country = 'india'
+
+    for item in country_data:
+        if item['country'].lower() == g.country.lower():
+            world['confirmed'] = item['cases']
+            world['active'] = item['active']
+            world['recovered'] = item['recovered']
+            world['deaths'] = item['deaths']
 
 @app.route('/')
 def ok():
