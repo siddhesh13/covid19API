@@ -176,6 +176,8 @@ def country_data():
             world['active'] = item['active']
             world['recovered'] = item['recovered']
             world['deaths'] = item['deaths']
+            break
+    return jsonify(world)    
 
 @app.route('/')
 def ok():
