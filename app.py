@@ -171,11 +171,13 @@ def all_states():
 @app.route('/state/<state_name>/')
 def state_data(state_name):
     g.state_name = state_name
-    state['confirmed'] = allstate_data[g.state_name]['confirmed'] 
-    state['active'] = allstate_data[g.state_name]['active']
-    state['recovered'] = allstate_data[g.state_name]['recovered']
-    state['deaths'] = allstate_data[g.state_name]['deaths']
-    return jsonify(world)
+    for item in stats:
+        if item[1].lower() == g.staate_name.lower():
+            state['confirmed'] = item[5]
+            state['confirmed'] = item[2]
+            state['confirmed'] = item[3]
+            state['confirmed'] = item[4]
+    return jsonify(state)
 
 @app.route('/countries/<country_code>/')
 def country(country_code):
