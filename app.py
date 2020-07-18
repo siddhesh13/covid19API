@@ -161,12 +161,12 @@ def all():
 def all_states():
    return jsonify(allstate_data)
 
-@app.route('/countries/<country>')
+@app.route('/countries/<country_code>')
 def country_data():
-    g.country = country
+    g.country_code = country_code
     #print(country_data)
     for item in country_data:
-        if item['country'].lower() == g.country.lower():
+        if item['country'].lower() == g.country_code.lower():
             world['confirmed'] = item['cases']
             world['active'] = item['active']
             world['recovered'] = item['recovered']
