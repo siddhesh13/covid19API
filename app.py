@@ -163,10 +163,11 @@ def all_states():
 
 @app.route('/countries/<country_code>')
 def country_data():
-    g.country_code = country_code
+    #g.country_code = country_code
+    country = 'india'
     #print(country_data)
     for item in country_data:
-        if item['country'].lower() == g.country_code.lower():
+        if item['country'].lower() == country.lower():
             world['confirmed'] = item['cases']
             world['active'] = item['active']
             world['recovered'] = item['recovered']
