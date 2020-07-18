@@ -162,7 +162,7 @@ def all_states():
    return jsonify(allstate_data)
 
 @app.route('/countries/<country_code>/')
-def country_data(country_code):
+def country(country_code):
     g.country_code = country_code
     #print(country_data)
     for item in country_data:
