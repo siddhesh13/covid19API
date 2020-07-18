@@ -169,7 +169,7 @@ def all_states():
    return jsonify(allstate_data)
 
 @app.route('/state/<state_name>/')
-def state(state_name):
+def state_data(state_name):
     g.state_name = state_name
     state['confirmed'] = allstate_data[g.state_name]['confirmed'] 
     state['active'] = allstate_data[g.state_name]['active']
