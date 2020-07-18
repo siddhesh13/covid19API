@@ -23,6 +23,13 @@ world = {
     'deaths': 0
     }
 
+state = {
+    'confirmed': 0,
+    'active': 0,
+    'recovered': 0,
+    'deaths': 0
+    }
+
 mah = {
     'active': 0,
     'confirmed': 0,
@@ -160,6 +167,15 @@ def all():
 @app.route('/state_data')
 def all_states():
    return jsonify(allstate_data)
+
+@app.route('/state/<state_name>/')
+def state(state_name):
+    g.state_name = state_name
+    state['confirmed'] = allstate_data[g.state_name]['confirmed'] 
+    state['active'] = allstate_data[g.state_name]['active']
+    state['recovered'] = allstate_data[g.state_name]['recovered']
+    state['deaths'] = allstate_data[g.state_name]['deaths']
+    return jsonify(world)
 
 @app.route('/countries/<country_code>/')
 def country(country_code):
